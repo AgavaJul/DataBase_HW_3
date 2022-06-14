@@ -32,8 +32,7 @@ drop table music_track;
 create table music_track (
 track_id serial primary key,
 track_name varchar (200) not null,
-duration time without time zone not null,
-music_album_id int references music_album (music_album_id)
+duration time without time zone not null
 );
 
 alter table music_track
@@ -44,6 +43,7 @@ drop table album_track;
 create table album_track (
 track_id int not null references music_track (track_id),
 musician_id int references musician (musician_id),
+music_album_id int references music_album (music_album_id),
 primary key (track_id, musician_id)
 );
 

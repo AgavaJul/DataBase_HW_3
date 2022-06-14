@@ -30,6 +30,9 @@ values (1, 5),
 (5, 9),
 (5, 10)
 
+insert into genre_musician (genre_id, musician_id)
+values (3, 1);
+
 insert into music_album (music_album_name, year_of_release)
 values ('Symphonic Space Dream', 2006),
 ('Scream', 2017),
@@ -45,60 +48,60 @@ insert into music_album (music_album_name, year_of_release)
 values ('30 Years - The New Best Of', 2018)
 
 
-insert into music_track (track_name, duration, music_album_id)
-values ('Rima Song', '00:04:26', 1),
-('From Angels to Raphael', '00:04:14', 1),
-('Start', '00:04:31', 1),
-('New York - Paris', '00:05:10', 1),
-('Thriller', '00:05:57', 2),
-('Unbreakable', '00:06:25', 2),
-('Threatened', '00:04:19', 2),
-('We`ve Got Forever', '00:03:12', 3),
-('You Are There', '00:03:25', 3),
-('Dapper Dan', '00:03:12', 3),
-('La Isla Bonita', '00:04:02', 4),
-('Jimmy Jimmy', '00:03:55', 4),
-('White Heat', '00:04:40', 4),
-('ГОСПОДА', '00:03:24', 5),
-('1000 ЛЕТ', '00:04:10', 5),
-('СНЕГ НАЧНЁТСЯ', '00:04:25', 5),
-('After The Lovin', '00:03:01', 6),
-('Loving You Loving Me', '00:03:47', 6),
-('Pack Saddle Saloon', '00:04:03', 6),
-('willow', '00:03:04', 7),
-('В десятку', '00:03:34', 8),
-('Сломала себя', '00:03:11', 8),
-('Сама', '00:03:14', 8)
+insert into music_track (track_name, duration)
+values ('Rima Song', '00:04:26'),
+('From Angels to Raphael', '00:04:14'),
+('Start', '00:04:31'),
+('New York - Paris', '00:05:10'),
+('Thriller', '00:05:57'),
+('Unbreakable', '00:06:25'),
+('Threatened', '00:04:19'),
+('We`ve Got Forever', '00:03:12'),
+('You Are There', '00:03:25'),
+('Dapper Dan', '00:03:12'),
+('La Isla Bonita', '00:04:02'),
+('Jimmy Jimmy', '00:03:55'),
+('White Heat', '00:04:40'),
+('ГОСПОДА', '00:03:24'),
+('1000 ЛЕТ', '00:04:10'),
+('СНЕГ НАЧНЁТСЯ', '00:04:25'),
+('After The Lovin', '00:03:01'),
+('Loving You Loving Me', '00:03:47'),
+('Pack Saddle Saloon', '00:04:03'),
+('willow', '00:03:04'),
+('В десятку', '00:03:34'),
+('Сломала себя', '00:03:11'),
+('Сама', '00:03:14')
 
-insert into music_track (track_name, duration, music_album_id)
-values ('Rima my Song', '00:04:26', 1),
-('My White Heat', '00:04:40', 4)
+insert into music_track (track_name, duration)
+values ('Rima my Song', '00:04:26'),
+('My White Heat', '00:04:40')
 
 
-insert into album_track (track_id, musician_id)
-values (1, 10),
-(2, 10),
-(3, 10),
-(4, 10),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 2),
-(12, 2),
-(13, 2),
-(14, 3),
-(15, 3),
-(16, 3),
-(17, 7),
-(18, 7),
-(19, 7),
-(20, 8),
-(21, 4),
-(22, 4),
-(23, 4)
+insert into album_track (track_id, musician_id, music_album_id)
+values (1, 10, 1),
+(2, 10, 1),
+(3, 10, 1),
+(4, 10, 1),
+(5, 1, 2),
+(6, 1, 2),
+(7, 1, 2),
+(8, 1, 3),
+(9, 1, 3),
+(10, 1, 3),
+(11, 2, 4),
+(12, 2, 4),
+(13, 2, 4),
+(14, 3, 5),
+(15, 3, 5),
+(16, 3, 5),
+(17, 7, 6),
+(18, 7, 6),
+(19, 7, 6),
+(20, 8, 7),
+(21, 4, 8),
+(22, 4, 8),
+(23, 4, 8)
 
 insert into music_collection (music_collection_name, year_of_release)
 values ('never', 2015),
@@ -136,26 +139,3 @@ values (1, 1),
 (8, 12),
 (8, 16)
 
-select music_album_name as "Название альбома", year_of_release as "Год выпуска"
-from music_album
-where year_of_release = 2018;
-
-select track_name as "Название трека", duration as "Длительность"
-from music_track
-where duration = (select max (duration) from music_track);
-
-select track_name as "Название трека"
-from music_track
-where duration >= '00:03:30';
-
-select music_collection_name as "Название сборника"
-from music_collection
-where year_of_release between 2018 and 2020;
-
-select nickname as "Псевдоним, состоящий из 1 слова"
-from musician 
-where nickname not like '% %';  #взяла столбец nickname для чистоты эксперимента, ведь имен, состоящих из одного слова у меня нет
-
-select track_name as "Название трека"
-from music_track
-where track_name ilike '%my%';
